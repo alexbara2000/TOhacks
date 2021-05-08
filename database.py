@@ -18,8 +18,14 @@ WHERE country_code LIKE '%CA%' AND latitude IS NOT null
 ORDER BY date DESC
 LIMIT 1000
 """
-query_job = client.query(query_string)
+def query(queryString):
+    return client.query(query_string)
 
-# Print the results.
-for row in query_job.result():  # Wait for the job to complete.
-    print("{}: {}".format(row["date"], row["place_id"]))
+
+
+
+
+# TESTS: Print the results.
+# query_job = query(query_string)
+#for row in query_job.result():  # Wait for the job to complete.
+#    print("{}: {}".format(row["date"], row["place_id"]))
