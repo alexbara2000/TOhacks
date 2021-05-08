@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %} {{ super() }} - main{% endblock %}
+<head>
+    {% block title %} {{ super() }} - main{% endblock %}
+    {% head %}
+        {{ super() }}
+        <script src="static/js/main.js"></script>
+    {% endblock %}
+</head>
 
 {% block content %}
 {% endblock %}
