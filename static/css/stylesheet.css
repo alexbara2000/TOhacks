@@ -20,7 +20,7 @@ html {
 }
 
 body {
-    background-image: url('/static/images/body.jpg');
+    background-image: url('/static/images/octocat.png');
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
