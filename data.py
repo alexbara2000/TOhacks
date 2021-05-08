@@ -11,12 +11,19 @@ table = database.query(query_string)
 #  for row in table.result():  # Wait for the job to complete.
 #     print("{}: {}, {}, {}, {}, {}, {}".format(row["date"], row["new_confirmed"], row["new_deceased"], row["cumulative_confirmed"], row["cumulative_deceased"], row["latitude"], row["longitude"]))
 
-byProvince = {}
 
-for row in table.result():
-    Provinces = byProvince.keys()
-    if row["location_key"] not in Provinces:
-        byProvince[row["location_key"]] = [row]
-    else:
-        byProvince[row["location_key"]].append(row)
+
+def ClassifyData(table):
+    byProvince = {}
+    for row in table.result():
+        Provinces = byProvince.keys()
+        if row["location_key"] not in Provinces:
+            byProvince[row["location_key"]] = [row]
+        else:
+            byProvince[row["location_key"]].append(row)
+    return byProvince
+
+# p = ClassifyData(table)
+
+# print(p["CA_QC"])
 
