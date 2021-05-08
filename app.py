@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'secret_key'
-app.debug = False
+app.debug = True
 
 client = Courier(auth_token=os.getenv('COURIER_AUTH'))
 
