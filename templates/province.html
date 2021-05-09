@@ -11,13 +11,14 @@ endblock %} {% block head %}
 {% endblock %}
 {% block content %}
 <div class="center">
-  <h1>Province</h1>
+  <h1 style="text-align: center;">{{ province.upper().replace('_', ' ') }}</h1>
   <br/><br/>
-  <div id="curve_chart" style="width: 900px; height: 500px; margin: auto"></div>
+  <div id="curve_chart" style="height: 1000px;"></div>
   <br/><br/>
   <div>
-    <h2>Prediction</h2>
-    <table style="width: 100%; border: 1px solid black">
+      <br/>
+    <h2 style="text-align: center; margin: 0;">Prediction</h2><br/><br/>
+    <table style="text-align: center; width:100%; height:100%;">
       <tr>
         <th>days</th>
         <th>Cases</th>
@@ -29,11 +30,12 @@ endblock %} {% block head %}
         <tr>
           <td>{{loop.index}}</td>
           {% for values in days %}
-          <td>{{values}}</td>
+          <td>{{values|round|int}}</td>
           {% endfor %}
         </tr>
       {% endfor %}
     </table>
+    <br/><br/>
   </div>
 </div>
 {% endblock %}

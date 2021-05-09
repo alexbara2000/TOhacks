@@ -1,6 +1,6 @@
 import os
 import data
-from flask import Flask, render_template, redirect, json
+from flask import Flask, render_template, redirect, json, url_for
 from trycourier import Courier
 from dotenv import load_dotenv
 from forms import ContactForm
@@ -63,7 +63,7 @@ def province(province):
     # print(chart_data)
     prediction = []
     for i in range(6):
-        prediction.append(data.predict(df, i + 1))
+        prediction.append(data.predict(df.tail(25), i + 1))
     print(prediction)
 
     return render_template('province.html', province=province, chart_data=chart_data, prediction=prediction)
