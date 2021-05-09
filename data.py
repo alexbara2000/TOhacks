@@ -4,6 +4,7 @@ from sklearn.linear_model import LinearRegression
 import datetime as dt
 import pandas as pd
 import numpy as np
+import database
 
 # data = pd.read_csv('covidData.csv')
 # print(data)

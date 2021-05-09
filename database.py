@@ -27,5 +27,5 @@ def query(queryString):
 
 # TESTS: Print the results.
 query_job = query(query_string)
-for row in query_job.result():  # Wait for the job to complete.
-   print("{}: {}, {}, {}, {}".format(row["date"], row["new_confirmed"], row["new_deceased"], row["cumulative_confirmed"], row["cumulative_deceased"]))
+# for row in query_job.result():  # Wait for the job to complete.
+#    print("{}: {}, {}, {}, {}".format(row["date"], row["new_confirmed"], row["new_deceased"], row["cumulative_confirmed"], row["cumulative_deceased"]))
