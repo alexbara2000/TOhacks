@@ -3,9 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <title>{% block title %}TOHacks{% endblock %}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="/static/css/stylesheet.css" rel="stylesheet" />
     <link href="/static/css/navbar.css" rel="stylesheet" />
-    <script src="static/js/navbar.js"></script>
+    <script src="/static/js/navbar.js"></script>
     {% block head %}
     {% endblock %}
   </head>
@@ -16,16 +19,18 @@
       <a class="icon" href="javascript:void(0);" onclick="openMenu()">&#9776;</a>
       <a href="/" class="main_links">Home</a>
       <a href="/about" class="main_links">About</a>
-      <a href="/province/alberta" class="main_links">Alberta</a>
-      <a href="/province/british_columbia" class="main_links">British Columbia</a>
-      <a href="/province/manitoba" class="main_links">Manitoba</a>
-      <a href="/province/new_brunswick" class="main_links">New Brunswick</a>
-      <a href="/province/newfoundland_and_labrador" class="main_links">Newfoundland and Labrador</a>
-      <a href="/province/nova_scotia" class="main_links">Nova Scotia</a>
-      <a href="/province/ontario" class="main_links">Ontario</a>
-      <a href="/province/prince_edward_island" class="main_links">Prince Edward Island</a>
-      <a href="/province/quebec" class="main_links">Quebec</a>
-      <a href="/province/saskatchewan" class="main_links">Saskatchewan</a>
+      <div class="dropdown">
+        <a href="/province/alberta" class="main_links">Alberta</a>
+        <a href="/province/british_columbia" class="main_links">British Columbia</a>
+        <a href="/province/manitoba" class="main_links">Manitoba</a>
+        <a href="/province/new_brunswick" class="main_links">New Brunswick</a>
+        <a href="/province/newfoundland_and_labrador" class="main_links">Newfoundland and Labrador</a>
+        <a href="/province/nova_scotia" class="main_links">Nova Scotia</a>
+        <a href="/province/ontario" class="main_links">Ontario</a>
+        <a href="/province/prince_edward_island" class="main_links">Prince Edward Island</a>
+        <a href="/province/quebec" class="main_links">Quebec</a>
+        <a href="/province/saskatchewan" class="main_links">Saskatchewan</a>
+      </div>
     </div>
     {% endblock %}
     {% block content %}

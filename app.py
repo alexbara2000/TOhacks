@@ -21,7 +21,7 @@ def about():
 
 @app.route('/province/<province>', methods=['GET', 'POST'])
 def province(province):
-    return render_template('province.html')
+    return render_template('province.html', province=province)
 
 def main():
     app.run()
