@@ -28,7 +28,9 @@ import json as json
 
 # model = DecisionTreeClassifier()
 
-province_map = dict(alberta='_AB', british_columbia='_BC', manitoba='_MB', new_brunswick='_NB', newfoundland_and_labrador='_NL', northwest_territories='_NT', nova_scotia='_NS', nunavut='_NU', ontario='_ON', prince_edward_island='_PE', quebec='_QC', saskatchewan='_SK', yukon='_YT')
+province_map = dict(alberta='_AB', british_columbia='_BC', manitoba='_MB', new_brunswick='_NB', newfoundland_and_labrador='_NL', northwest_territories='_NT',
+                    nova_scotia='_NS', nunavut='_NU', ontario='_ON', prince_edward_island='_PE', quebec='_QC', saskatchewan='_SK', yukon='_YT')
+
 
 def predict(df, days):
     df['date'] = pd.to_datetime(df['date'])
@@ -41,23 +43,23 @@ def predict(df, days):
     print(x[len(x)-1])
     print(x[0])
     lr_y = LinearRegression()
-    lr_y.fit(np.array(x).reshape(-1,1), np.array(y).reshape(-1,1))
-    tomorrow_y=lr_y.predict(np.array([[x[len(x)-1]+days]]))
+    lr_y.fit(np.array(x).reshape(-1, 1), np.array(y).reshape(-1, 1))
+    tomorrow_y = lr_y.predict(np.array([[x[len(x)-1]+days]]))
     lr_z = LinearRegression()
-    lr_z.fit(np.array(x).reshape(-1,1), np.array(z).reshape(-1,1))
-    tomorrow_z=lr_z.predict(np.array([[x[len(x)-1]+days]]))
+    lr_z.fit(np.array(x).reshape(-1, 1), np.array(z).reshape(-1, 1))
+    tomorrow_z = lr_z.predict(np.array([[x[len(x)-1]+days]]))
     lr_a = LinearRegression()
-    lr_a.fit(np.array(x).reshape(-1,1), np.array(a).reshape(-1,1))
-    tomorrow_a=lr_a.predict(np.array([[x[len(x)-1]+days]]))
+    lr_a.fit(np.array(x).reshape(-1, 1), np.array(a).reshape(-1, 1))
+    tomorrow_a = lr_a.predict(np.array([[x[len(x)-1]+days]]))
     lr_b = LinearRegression()
-    lr_b.fit(np.array(x).reshape(-1,1), np.array(b).reshape(-1,1))
-    tomorrow_b=lr_b.predict(np.array([[x[len(x)-1]+days]]))
+    lr_b.fit(np.array(x).reshape(-1, 1), np.array(b).reshape(-1, 1))
+    tomorrow_b = lr_b.predict(np.array([[x[len(x)-1]+days]]))
     return [tomorrow_y[0][0], tomorrow_z[0][0], tomorrow_a[0][0], tomorrow_b[0][0]]
 
 
 def query_string(province_code):
     return """SELECT date, location_key, new_confirmed, new_deceased, cumulative_confirmed, cumulative_deceased FROM `bigquery-public-data.covid19_open_data.covid19_open_data`
-    WHERE location_key LIKE '%CA""" + province_code +"""%' AND latitude IS NOT null AND new_confirmed IS NOT null
+    WHERE location_key LIKE '%CA""" + province_code + """%' AND latitude IS NOT null AND new_confirmed IS NOT null
     ORDER BY date ASC
     LIMIT 100000"""
 

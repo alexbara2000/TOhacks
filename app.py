@@ -13,13 +13,16 @@ app.debug = True
 
 client = Courier(auth_token=os.getenv('COURIER_AUTH'))
 
+
 @app.route('/')
 def index():
     return render_template('main.html')
 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
+
 
 @app.route('/mail', methods=['GET', 'POST'])
 def mail():
@@ -31,21 +34,23 @@ def mail():
             resp = client.profiles.add(
                 form.name.data,
                 {
-                    "email":form.email.data,
-                    "name":form.name.data
+                    "email": form.email.data,
+                    "name": form.name.data
                 }
-                )
+            )
         return render_template("about.html")
-    
+
     return render_template(
         'mail.html',
         form=form
     )
 
+
 @app.route('/province/<province>', methods=['GET', 'POST'])
 def province(province):
     df = data.classify(province)
-    new_df = df.drop(columns=['location_key', 'cumulative_confirmed', 'cumulative_deceased'])
+    new_df = df.drop(
+        columns=['location_key', 'cumulative_confirmed', 'cumulative_deceased'])
     new_df['date'] = new_df['date'].apply(lambda x: x.strftime('%Y-%m-%d'))
     chart_data = [new_df.columns.to_numpy().tolist(), *new_df.values.tolist()]
 
@@ -68,8 +73,10 @@ def province(province):
 
     return render_template('province.html', province=province, chart_data=chart_data, prediction=prediction)
 
+
 def main():
     app.run()
+
 
 if __name__ == '__main__':
     main()
