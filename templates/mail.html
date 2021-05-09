@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} {{ super() }} - Mailing List{% endblock %}
+
+{% block content %}
+<div class="container center">
+    <h2 class="title">Mailing List</h2>
+
+    <form method="POST" action="" class="form-group">
+        <dl>
+            <div class="mx-3">
+                {{ form.name.label }}
+                <br>
+                {{ form.name(size=20) }}
+            </div>
+            
+            <br>
+            <div class="mx-3">
+                {{ form.email.label }}
+                <br>
+                {{ form.email }}
+            </div>
+            
+            <br>
+            <div class="mx-3">
+               {{ form.body.label }}
+               <br>
+                {{ form.body }} 
+            </div>
+            
+            <br>
+            {{ form.submit }}
+        </dl>
+
+    </form>
+  </div>
+{% endblock %}
