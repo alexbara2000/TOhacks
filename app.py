@@ -5,7 +5,7 @@ from flask import Flask, render_template, redirect, json
 from datetime import datetime
 from trycourier import Courier
 from dotenv import load_dotenv
-
+from forms import ContactForm
 load_dotenv()
 
 app = Flask(__name__)
@@ -21,6 +21,16 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+@app.route('/mail')
+def mail():
+    form = ContactForm()
+    if form.validate_on_submit():
+        return redirect(url_for("success"))
+    return render_template(
+        'mail.html',
+        form=form
+    )
 
 @app.route('/province/<province>', methods=['GET', 'POST'])
 def province(province):
