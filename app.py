@@ -25,7 +25,7 @@ def about():
 def mail():
     form = ContactForm()
     if form.validate_on_submit():
-        with open('mailingList.csv', mode='w') as mail_file:
+        with open('mailingList.csv', mode='a') as mail_file:
             employee_writer = csv.writer(mail_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             employee_writer.writerow([form.name.data, form.email.data, form.body.data])
             resp = client.profiles.add(
