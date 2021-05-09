@@ -29,7 +29,7 @@ import json as json
 
 province_code = dict(alberta='_AB', )
 
-def predictNextDay(csv):
+def predictNextDay(csv, days):
     data = pd.read_csv(csv+'.csv')
     data['date'] = pd.to_datetime(data['date'])
     data['date'] = data['date'].map(dt.datetime.toordinal)
@@ -42,16 +42,16 @@ def predictNextDay(csv):
     b = data['cumulative_deceased']
     lr_y = LinearRegression()
     lr_y.fit(np.array(x).reshape(-1,1), np.array(y).reshape(-1,1))
-    tomorrow_y=lr_y.predict(np.array([[x[0]+1]]))
+    tomorrow_y=lr_y.predict(np.array([[x[0]+days]]))
     lr_z = LinearRegression()
     lr_z.fit(np.array(x).reshape(-1,1), np.array(z).reshape(-1,1))
-    tomorrow_z=lr_z.predict(np.array([[x[0]+1]]))
+    tomorrow_z=lr_z.predict(np.array([[x[0]+days]]))
     lr_a = LinearRegression()
     lr_a.fit(np.array(x).reshape(-1,1), np.array(a).reshape(-1,1))
-    tomorrow_a=lr_a.predict(np.array([[x[0]+1]]))
+    tomorrow_a=lr_a.predict(np.array([[x[0]+days]]))
     lr_b = LinearRegression()
     lr_b.fit(np.array(x).reshape(-1,1), np.array(b).reshape(-1,1))
-    tomorrow_b=lr_b.predict(np.array([[x[0]+1]]))
+    tomorrow_b=lr_b.predict(np.array([[x[0]+days]]))
     return [tomorrow_y[0][0], tomorrow_z[0][0], tomorrow_a[0][0], tomorrow_b[0][0]]
 
 def predictNext5Day(csv):
