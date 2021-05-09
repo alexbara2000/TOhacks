@@ -6,6 +6,7 @@
     <h2 class="title">Mailing List</h2>
 
     <form method="POST" action="" class="form-group">
+        {{ form.csrf_token }}
         <dl>
             <div class="mx-3">
                 {{ form.name.label }}

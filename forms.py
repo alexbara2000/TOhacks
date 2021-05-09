@@ -15,5 +15,6 @@ class ContactForm(FlaskForm):
             DataRequired()
         ]
     )
-    body = SelectField( 'Province',choices = ["Quebec", "Manitoba", "New Brunswick"])
+    body = SelectField('Province', choices=[
+                       "Quebec", "Manitoba", "New Brunswick"])
     submit = SubmitField('Submit')
