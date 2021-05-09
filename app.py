@@ -51,7 +51,7 @@ def province(province):
     # print(chart_data)
     prediction = []
     for i in range(6):
-        prediction.append(data.predict(df.tail(30), i + 1))
+        prediction.append(data.predict(df.tail(25), i + 1))
     print(prediction)
 
     return render_template('province.html', province=province, chart_data=chart_data, prediction=prediction)
