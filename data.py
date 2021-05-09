@@ -33,11 +33,11 @@ province_map = dict(alberta='_AB', british_columbia='_BC', manitoba='_MB', new_b
 def predict(df, days):
     df['date'] = pd.to_datetime(df['date'])
     df['date'] = df['date'].map(dt.datetime.toordinal)
-    x = df['date']
-    y = df['new_confirmed']
-    z = df['cumulative_confirmed']
-    a = df['new_deceased']
-    b = df['cumulative_deceased']
+    x = list(df['date'])
+    y = list(df['new_confirmed'])
+    z = list(df['cumulative_confirmed'])
+    a = list(df['new_deceased'])
+    b = list(df['cumulative_deceased'])
     lr_y = LinearRegression()
     lr_y.fit(np.array(x).reshape(-1,1), np.array(y).reshape(-1,1))
     tomorrow_y=lr_y.predict(np.array([[x[0]+days]]))
