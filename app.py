@@ -19,6 +19,17 @@ def index():
 def about():
     return render_template('about.html')
 
+@app.route('/province/<province>', methods=['GET', 'POST'])
+def province(province):
+    chart_data = [
+        ["Year", "Sales", "province"],
+        ["2004", 1000, 400],
+        ["2005", 1170, 460],
+        ["2006", 660, 1120],
+        ["2007", 1030, 540],
+    ]
+    return render_template('province.html', province=province, chart_data=chart_data)
+
 def main():
     app.run()
 
