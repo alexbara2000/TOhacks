@@ -5,7 +5,7 @@ import datetime as dt
 import pandas as pd
 import numpy as np
 import database
-
+import json as json
 # data = pd.read_csv('covidData.csv')
 # print(data)
 # data['date'] = pd.to_datetime(data['date'])
@@ -29,6 +29,7 @@ import database
 
 def predictNextDay(csv):
     data = pd.read_csv(csv+'.csv')
+    print(data)
     data['date'] = pd.to_datetime(data['date'])
     data['date'] = data['date'].map(dt.datetime.toordinal)
     # print (data)
@@ -95,16 +96,10 @@ table = database.query(query_string)
 
 
 def ClassifyData(table):
-    byProvince = {}
-    for row in table.result():
-        Provinces = byProvince.keys()
-        if row["location_key"] not in Provinces:
-            byProvince[row["location_key"]] = [row]
-        else:
-            byProvince[row["location_key"]].append(row)
+    byProvince  = table.result().to_dataframe()
     return byProvince
 
-# p = ClassifyData(table)
+p = ClassifyData(table)
 
-# print(p["CA_QC"])
+print(p)
 

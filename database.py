@@ -19,6 +19,7 @@ LIMIT 100
 """
 
 def query(queryString):
+    print(type(client.query(query_string)))
     return client.query(queryString)
 
 
