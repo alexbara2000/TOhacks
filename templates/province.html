@@ -16,8 +16,9 @@ endblock %} {% block head %}
   <div id="curve_chart" style="height: 1000px;"></div>
   <br/><br/>
   <div>
-    <h2>Prediction</h2>
-    <table>
+      <br/>
+    <h2 style="text-align: center; margin: 0;">Prediction</h2><br/><br/>
+    <table style="text-align: center; width:100%; height:100%;">
       <tr>
         <th>days</th>
         <th>Cases</th>
@@ -29,11 +30,12 @@ endblock %} {% block head %}
         <tr>
           <td>{{loop.index}}</td>
           {% for values in days %}
-          <td>{{values}}</td>
+          <td>{{values|round|int}}</td>
           {% endfor %}
         </tr>
       {% endfor %}
     </table>
+    <br/><br/>
   </div>
 </div>
 {% endblock %}
