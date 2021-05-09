@@ -13,10 +13,8 @@ endblock %} {% block head %}
 <div class="center">
   <h1>Province</h1>
   <br/><br/>
-  <div id="curve_chart" style="width: 900px; height: 500px; margin: auto">
-    {{ chart_data|tojson }}
-  </div>
-  <br /><br />
+  <div id="curve_chart" style="width: 900px; height: 500px; margin: auto"></div>
+  <br/><br/>
   <div>
     <h2>Prediction</h2>
     <table style="width: 100%; border: 1px solid black">
@@ -28,12 +26,12 @@ endblock %} {% block head %}
         <th>total deceased</th>
       </tr>
       {% for days in prediction %}
-      <tr>
-        <td>{{loop.index}}</td>
-        {% for values in days %}
-        <td>{{values}}</td>
-        {% endfor %}
-      </tr>
+        <tr>
+          <td>{{loop.index}}</td>
+          {% for values in days %}
+          <td>{{values}}</td>
+          {% endfor %}
+        </tr>
       {% endfor %}
     </table>
   </div>

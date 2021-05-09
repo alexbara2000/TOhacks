@@ -30,17 +30,14 @@ import json as json
 
 province_map = dict(alberta='_AB', british_columbia='_BC', manitoba='_MB', new_brunswick='_NB', newfoundland_and_labrador='_NL', northwest_territories='_NT', nova_scotia='_NS', nunavut='_NU', ontario='_ON', prince_edward_island='_PE', quebec='_QC', saskatchewan='_SK', yukon='_YT')
 
-def predictNextDay(csv, days):
-    data = pd.read_csv(csv+'.csv')
-    data['date'] = pd.to_datetime(data['date'])
-    data['date'] = data['date'].map(dt.datetime.toordinal)
-    # print (data)
-    x = data['date']
-    # print(x)
-    y = data['new_confirmed']
-    z = data['cumulative_confirmed']
-    a = data['new_deceased']
-    b = data['cumulative_deceased']
+def predict(df, days):
+    df['date'] = pd.to_datetime(df['date'])
+    df['date'] = df['date'].map(dt.datetime.toordinal)
+    x = df['date']
+    y = df['new_confirmed']
+    z = df['cumulative_confirmed']
+    a = df['new_deceased']
+    b = df['cumulative_deceased']
     lr_y = LinearRegression()
     lr_y.fit(np.array(x).reshape(-1,1), np.array(y).reshape(-1,1))
     tomorrow_y=lr_y.predict(np.array([[x[0]+days]]))
@@ -54,33 +51,6 @@ def predictNextDay(csv, days):
     lr_b.fit(np.array(x).reshape(-1,1), np.array(b).reshape(-1,1))
     tomorrow_b=lr_b.predict(np.array([[x[0]+days]]))
     return [tomorrow_y[0][0], tomorrow_z[0][0], tomorrow_a[0][0], tomorrow_b[0][0]]
-
-
-def predictNext5Day(csv):
-    data = pd.read_csv(csv+'.csv')
-    data['date'] = pd.to_datetime(data['date'])
-    data['date'] = data['date'].map(dt.datetime.toordinal)
-    x = data['date']
-    y = data['new_confirmed']
-    z = data['cumulative_confirmed']
-    a = data['new_deceased']
-    b = data['cumulative_deceased']
-    lr_y = LinearRegression()
-    lr_y.fit(np.array(x).reshape(-1,1), np.array(y).reshape(-1,1))
-    tomorrow_y=lr_y.predict(np.array([[x[0]+5]]))
-    lr_z = LinearRegression()
-    lr_z.fit(np.array(x).reshape(-1,1), np.array(z).reshape(-1,1))
-    tomorrow_z=lr_z.predict(np.array([[x[0]+5]]))
-    lr_a = LinearRegression()
-    lr_a.fit(np.array(x).reshape(-1,1), np.array(a).reshape(-1,1))
-    tomorrow_a=lr_a.predict(np.array([[x[0]+5]]))
-    lr_b = LinearRegression()
-    lr_b.fit(np.array(x).reshape(-1,1), np.array(b).reshape(-1,1))
-    tomorrow_b=lr_b.predict(np.array([[x[0]+5]]))
-    return [tomorrow_y[0][0], tomorrow_z[0][0], tomorrow_a[0][0], tomorrow_b[0][0]]
-
-# print(predictNextDay("Quebec"))
-# print(predictNext5Day("Quebec"))
 
 
 def query_string(province_code):
