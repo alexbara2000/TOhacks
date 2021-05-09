@@ -12,21 +12,5 @@ credentials = service_account.Credentials.from_service_account_file(
 
 client = bigquery.Client(credentials=credentials, project=credentials.project_id,)
 
-query_string = """SELECT date, location_key, place_id, new_confirmed, new_deceased, cumulative_confirmed, cumulative_deceased FROM `bigquery-public-data.covid19_open_data.covid19_open_data`
-WHERE location_key LIKE '%CA_ON%' AND latitude IS NOT null AND new_confirmed IS NOT null
-ORDER BY date DESC
-LIMIT 100
-"""
-
 def query(queryString):
-    print(type(client.query(query_string)))
     return client.query(queryString)
-
-
-
-
-
-# TESTS: Print the results.
-query_job = query(query_string)
-for row in query_job.result():  # Wait for the job to complete.
-   print("{}: {}, {}, {}, {}".format(row["date"], row["new_confirmed"], row["new_deceased"], row["cumulative_confirmed"], row["cumulative_deceased"]))
