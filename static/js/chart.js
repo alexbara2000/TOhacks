@@ -5,7 +5,7 @@ function drawChart() {
   var data = google.visualization.arrayToDataTable(chart_data);
 
   var options = {
-    title: "Company Performance",
+    title: "Covid19",
     curveType: "function",
     legend: { position: "bottom" },
   };

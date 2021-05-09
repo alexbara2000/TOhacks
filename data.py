@@ -31,7 +31,9 @@ def predictNextDay(csv):
     data = pd.read_csv(csv+'.csv')
     data['date'] = pd.to_datetime(data['date'])
     data['date'] = data['date'].map(dt.datetime.toordinal)
+    # print (data)
     x = data['date']
+    # print(x)
     y = data['new_confirmed']
     z = data['cumulative_confirmed']
     a = data['new_deceased']
