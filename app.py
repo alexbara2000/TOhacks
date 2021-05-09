@@ -4,6 +4,7 @@ from flask import Flask, render_template, redirect, json
 from trycourier import Courier
 from dotenv import load_dotenv
 from forms import ContactForm
+import csv
 load_dotenv()
 
 app = Flask(__name__)
@@ -20,11 +21,22 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/mail')
+@app.route('/mail', methods=['GET', 'POST'])
 def mail():
     form = ContactForm()
     if form.validate_on_submit():
-        return redirect(url_for("success"))
+        with open('mailingList.csv', mode='w') as mail_file:
+            employee_writer = csv.writer(mail_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            employee_writer.writerow([form.name.data, form.email.data, form.body.data])
+            resp = client.profiles.add(
+                form.name.data,
+                {
+                    "email":form.email.data,
+                    "name":form.name.data
+                }
+                )
+        return render_template("about.html")
+    
     return render_template(
         'mail.html',
         form=form
