@@ -94,30 +94,10 @@ table = database.query(query_string)
 
 
 def ClassifyData(table):
-    byProvince = {}
-    lists = {}
-    for row in table.result():
-        #print(row)
-        Provinces = byProvince.keys()
-        if row["location_key"] not in lists:
-            d = {"date": row["date"], "new_confirmed": row["new_confirmed"], "new_deceased": row["new_deceased"], "cumulative_confirmed":row["cumulative_confirmed"], "cumulative_deceased":row["cumulative_deceased"]}
-            d["date"] = str(d["date"])
-            lists[row["location_key"]] = [d]
-            #byProvince[row["location_key"]] = pd.DataFrame(data=d, index=[0])
-        else:
-            d = {"date": row["date"], "new_confirmed": row["new_confirmed"], "new_deceased": row["new_deceased"], "cumulative_confirmed":row["cumulative_confirmed"], "cumulative_deceased":row["cumulative_deceased"]}
-            d["date"] = str(d["date"])
-            lists[row["location_key"]].append(d)
-            #df2 = pd.DataFrame(data=d, index=[1])
-            #print(df2)
-            #byProvince[row["location_key"]].append(df2)
-    for key, value in lists.items():
-        #print(value)
-        byProvince[key] = pd.DataFrame(data=value)
-
+    byProvince  = table.result().to_dataframe()
     return byProvince
 
 p = ClassifyData(table)
 
-print(p["CA_QC"])
+print(p)
 
