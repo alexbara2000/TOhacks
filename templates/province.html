@@ -1,13 +1,10 @@
 {% extends "base.html" %} {% block title %} {{ super() }} - {{ province }}{%
 endblock %} {% block head %}
-<script
-  type="text/javascript"
-  src="https://www.gstatic.com/charts/loader.js"
-></script>
-<script type="text/javascript">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js" defer="defer"></script>
+<script type="text/javascript" defer="defer">
   var chart_data = {{ chart_data|tojson }};
 </script>
-<script src="/static/js/chart.js"></script>
+<script src="/static/js/chart.js" defer="defer"></script>
 {% endblock %}
 {% block content %}
 <div class="center">
