@@ -18,17 +18,25 @@
     <h2>
         Prediction
     </h2>
-    <h4>Cases, total cases, deceased, total deceased</h4>
-    <p>
-         <br/>
-    {% for days in prediction %}
-        
-        {% for values in days %}
-            {{values}},      
+    <table style="width:100%; border:1px solid black;">
+        <tr>
+            <th>days</th>
+            <th>Cases</th>
+            <th>total cases</th>
+            <th>deceased</th>
+            <th>total deceased</th>
+        </tr>
+        {% for days in prediction %}
+        <tr>
+            <td>{{loop.index}}</td>
+            {% for values in days %}
+            <td>{{values}}</td>      
+            {% endfor %}
+            
+        </tr>
         {% endfor %}
-        <br/>
-    {% endfor %}
-    </p>
+    </table>
+
 </div>
 
 {% endblock %}
