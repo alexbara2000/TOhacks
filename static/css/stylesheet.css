@@ -1,6 +1,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     padding-top: 90px;
+    position: relative;
 }
 
 html {
@@ -8,7 +9,7 @@ html {
 }
 
 body {
-    background-image: url('/static/images/octocat.png');
+    background-color: #2f3136;
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
@@ -17,9 +18,8 @@ body {
     background-attachment: fixed;
 }
 
-.user {
-    font-weight: bold;
-    font-size: 20px;
+h1 {
+    color: white;
 }
 
 /* unvisited link */
@@ -48,8 +48,12 @@ a {
 
 .center {
     margin: auto;
-    width: 50%;
-    border: 3px solid green;
+    width: 70%;
     padding: 10px;
     background-color: aliceblue;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
   }
