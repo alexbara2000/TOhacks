@@ -50,5 +50,10 @@ a {
     margin: auto;
     width: 70%;
     padding: 10px;
-    background-color: #74b0c4;
+    background-color: aliceblue;
+  }
+
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
   }
