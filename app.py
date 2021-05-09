@@ -1,8 +1,10 @@
 import os
+import data
+import csv
 from flask import Flask, render_template, redirect, json
+from datetime import datetime
 from trycourier import Courier
 from dotenv import load_dotenv
-import data
 
 load_dotenv()
 
@@ -22,18 +24,19 @@ def about():
 
 @app.route('/province/<province>', methods=['GET', 'POST'])
 def province(province):
-    print(data.df.head())
-    chart_data = data.df.to_json()
+    new_df = data.df.drop(columns=['location_key', 'cumulative_confirmed', 'cumulative_deceased'])
+    new_df['date'] = new_df['date'].apply(lambda x: x.strftime('%Y-%m-%d'))
+    chart_data = [new_df.columns.to_numpy().tolist(), *new_df.values.tolist()]
     print(chart_data)
 
     # chart_data=[]
     # chart_data.append(["date","new_confirmed","new_deceased"])
     # with open(province+'test.csv', mode='r') as csv_file:
     #     reader = csv.reader(csv_file)
-    #     print(reader)
     #     for row in reader:
     #         new_row=[row[0],int(row[1]),int(row[2])]
     #         chart_data.append(new_row)
+    # print(chart_data)
 
     # data = pd.read_csv(province+'.csv')
     # data['date'] = pd.to_datetime(data['date'])

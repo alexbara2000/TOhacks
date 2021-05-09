@@ -2,7 +2,7 @@ google.charts.load("current", { packages: ["corechart"] });
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
-  var data = google.visualization.DataView.fromJSON(chart_data);
+  var data = google.visualization.arrayToDataTable(chart_data);
 
   var options = {
     title: "Covid19",

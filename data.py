@@ -27,6 +27,8 @@ import json as json
 
 # model = DecisionTreeClassifier()
 
+province_code = dict(alberta='_AB', )
+
 def predictNextDay(csv):
     data = pd.read_csv(csv+'.csv')
     data['date'] = pd.to_datetime(data['date'])
@@ -90,7 +92,7 @@ def predictNext5Day(csv):
 def queryString_filtered(Province_code):
     return """SELECT date, location_key, new_confirmed, new_deceased, cumulative_confirmed, cumulative_deceased FROM `bigquery-public-data.covid19_open_data.covid19_open_data`
     WHERE location_key LIKE '%CA""" + Province_code +"""%' AND latitude IS NOT null AND new_confirmed IS NOT null
-    ORDER BY date DESC
+    ORDER BY date ASC
     LIMIT 100000"""
 
 
