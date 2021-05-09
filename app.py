@@ -41,15 +41,20 @@ def province(province):
     # chart_data = [x,y,z]
     # print(chart_data)
     # print(chart_data)
-    prediction = data.predictNextDay("Quebec")
-    # print(prediction)
+    prediction = []
+    i = 1
+    while i < 6:
+        prediction.append(data.predictNextDay("Quebec", i))
+        i += 1
+    print(prediction)
+
 
     # chart_data = [["Year", "Sales", "province"],
     #     ["2004", 1000, 400],
     #     ["2005", 1170, 460],
     #     ["2006", 660, 1120],
     #     ["2007", 1030, 540],]
-    return render_template('province.html', province=province, chart_data=chart_data)
+    return render_template('province.html', province=province, chart_data=chart_data, prediction = prediction)
 
 def main():
     app.run()
