@@ -19,6 +19,10 @@ def index():
 def about():
     return render_template('about.html')
 
+@app.route('/province/<province>', methods=['GET', 'POST'])
+def province(province):
+    return render_template('province.html')
+
 def main():
     app.run()
 
