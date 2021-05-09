@@ -1,8 +1,6 @@
 import os
 import data
-import csv
 from flask import Flask, render_template, redirect, json
-from datetime import datetime
 from trycourier import Courier
 from dotenv import load_dotenv
 
