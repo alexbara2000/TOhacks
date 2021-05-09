@@ -8,13 +8,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="profile">
+<div class="center">
     <h1>Province</h1>
 </div>
 <br><br>
 <div id="curve_chart" style="width: 900px; height: 500px; margin: auto;">{{ chart_data|tojson }}</div>
 <br/><br/>
-<div class="center">
+<div>
     <h2>
         Prediction
     </h2>
@@ -22,9 +22,9 @@
     <p>
          <br/>
     {% for days in prediction %}
-        
+
         {% for values in days %}
-            {{values}},      
+            {{values}},
         {% endfor %}
         <br/>
     {% endfor %}
